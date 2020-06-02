@@ -17,6 +17,7 @@ function getCities(event){
   const citySelect = document.querySelector('select[name=city]')
   const stateInput = document.querySelector('input[name=state]')
   
+
   const ufValue = event.target.value
 
   const indexOfSelectedState = event.target.selectedIndex
@@ -24,10 +25,10 @@ function getCities(event){
 
   const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
 
-  console.log(url)
   fetch(url)
   .then( res =>  res.json() )
   .then( cities => {
+    citySelect.innerHTML = ''
     for(city of cities){
       citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
     }
