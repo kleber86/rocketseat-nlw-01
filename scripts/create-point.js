@@ -24,13 +24,15 @@ function getCities(event){
   stateInput.value = event.target.options[indexOfSelectedState].text
 
   const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
+  citySelect.innerHTML = '<option value>Selecione a Cidade</option>'
+  citySelect.disabled = true
 
   fetch(url)
   .then( res =>  res.json() )
   .then( cities => {
-    citySelect.innerHTML = ''
+    
     for(city of cities){
-      citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
+      citySelect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`
     }
 
     citySelect.disabled = false
