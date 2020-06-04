@@ -9,15 +9,28 @@ server.use(express.static('public'));
   RESPONSE: Resposta
 */
 
+// Utilizando Templete Engine
+const nunjucks = require('nunjucks')
+nunjucks.configure('src/views', {
+  express: server,
+  noCache: true
+})
 
 // Rota da Pagina Principal
 server.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html')
+  return res.render('index.html', {
+    title: 'Um titulo qualquer'
+  });
 });
 
 // Rota da Pagina Create Point
 server.get('/create-point', (req, res) => {
-  res.sendFile(__dirname + '/views/create-point.html')
+  return res.render('create-point.html');
+});
+
+// Rota da Pagina Search Results
+server.get('/search', (req, res) => {
+  return res.render('search-results.html');
 });
 
 // Ligar o servidor na porta 3000
