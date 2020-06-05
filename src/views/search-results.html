@@ -6,53 +6,43 @@
   <title>Criar um ponto de coleta</title>
 {% endblock title %}
 
-
 {% block styles %}
-   <link rel="stylesheet" href="styles/search-results.css">
+  <link rel="stylesheet" href="styles/search-results.css">
 {% endblock styles %}
 
 {% block content %}
-     {% include 'partials/page-header.html' %}
+  {% include 'partials/page-header.html' %}
 
-     <main>
-      <h4>
-        <strong>2 pontos</strong> encontrados
-      </h4>
-      <div class="cards">
+  <main>
+    {% if total > 0 %}
+    
+    <h4>
+      <strong>{{ total }} pontos</strong>
+      encontrados
+    </h4>
+    <div class="cards">
+
+      {% for place in places %}
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Colectoria">
-          <h2>Colectoria</h2>
-          <h3>Resíduos Eletrônicos, Lâmpadas</h3>
+          <img src="{{ place.image }}" alt="Colectoria">
+          <h2>{{ place.name }}</h2>
+          <h3>{{ place.title }}</h3>
           <p>
-            Rio do Sul, Santa Catarina <br>
-            Guilherme Gemballa, Jardim América <br>
-            Nº 260
+            {{ place.city }}, {{ place.state }}
+            <br>
+            {{ place.address }}
+            <br>
+            {{ place.address2 }}
           </p>
         </div>
+      {% endfor %}
+    </div>
 
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Papersider">
-          <h2>Papersider</h2>
-          <h3>Papéis e Papelão</h3>
-          <p>
-            Rio do Sul, Santa Catarina <br>
-            Guilherme Gemballa, Jardim América <br>
-            Nº 260
-          </p>
-        </div>
-        
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Papersider">
-          <h2>Papersider</h2>
-          <h3>Papéis e Papelão</h3>
-          <p>
-            Rio do Sul, Santa Catarina <br>
-            Guilherme Gemballa, Jardim América <br>
-            Nº 260
-          </p>
-        </div>
+    {% else %}
 
-      </div>
-    </main>
+      <h4><strong>Items</strong> não encontrados</h4>
+
+    {% endif %}
+  </main>
 
 {% endblock content %}
